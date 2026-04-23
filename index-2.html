@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amaan Medical General Store – Order Medicines Online</title>
+  <meta name="description" content="Amaan Medical General Store – Order medicines and healthcare products online. Fast delivery, genuine medicines, trusted pharmacy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:   #1a7a4a;
+      --green2:  #22a05a;
+      --teal:    #0d9488;
+      --light:   #f0faf5;
+      --white:   #ffffff;
+      --grey:    #f4f7f6;
+      --text:    #1c2b26;
+      --muted:   #6b8a7a;
+      --border:  #d1e8dc;
+      --red:     #e53e3e;
+      --shadow:  0 4px 24px rgba(26,122,74,.10);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--grey); color: var(--text); }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(26,122,74,.08);
+    }
+    .nav-inner {
+      max-width: 1160px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--green); display: grid; place-items: center;
+    }
+    .logo-icon svg { width: 22px; height: 22px; fill: white; }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--green); line-height: 1.1; }
+    .logo-sub { font-size: .68rem; color: var(--muted); font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text); font-size: .92rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta {
+      background: var(--green); color: white; border: none;
+      padding: 9px 22px; border-radius: 8px; font-size: .9rem; font-weight: 600;
+      cursor: pointer; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--green2); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #e8f7ef 0%, #d0f0e2 60%, #b8e8d4 100%);
+      padding: 72px 24px 56px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '+'; position: absolute; top: 20px; left: 5%; font-size: 80px;
+      color: rgba(26,122,74,.08); font-weight: 900; line-height: 1;
+    }
+    .hero::after {
+      content: '⊕'; position: absolute; bottom: 10px; right: 6%; font-size: 64px;
+      color: rgba(26,122,74,.10); line-height: 1;
+    }
+    .hero-badge {
+      display: inline-block; background: var(--green); color: white;
+      font-size: .75rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--text); line-height: 1.15; margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--green); }
+    .hero p { font-size: 1.05rem; color: var(--muted); max-width: 520px; margin: 0 auto 32px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--green); color: white; padding: 14px 32px;
+      border-radius: 10px; font-size: 1rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 16px rgba(26,122,74,.3);
+    }
+    .btn-primary:hover { background: var(--green2); transform: translateY(-2px); }
+    .btn-outline {
+      background: white; color: var(--green); padding: 14px 32px;
+      border-radius: 10px; font-size: 1rem; font-weight: 600;
+      text-decoration: none; border: 2px solid var(--green); cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-outline:hover { background: var(--light); }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--green); color: white;
+      padding: 16px 24px;
+    }
+    .trust-inner {
+      max-width: 1160px; margin: auto;
+      display: flex; justify-content: space-around; flex-wrap: wrap; gap: 12px;
+    }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: .88rem; font-weight: 500; }
+    .trust-item svg { width: 18px; height: 18px; fill: rgba(255,255,255,.85); }
+
+    /* ── SECTION TITLES ── */
+    .section { max-width: 1160px; margin: 0 auto; padding: 56px 24px; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: 1.9rem; color: var(--text); margin-bottom: 8px; }
+    .section-sub { color: var(--muted); font-size: .95rem; margin-bottom: 36px; }
+
+    /* ── CATEGORIES ── */
+    .categories { background: white; }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+    .cat-card {
+      background: var(--grey); border-radius: 14px; padding: 22px 14px;
+      text-align: center; cursor: pointer; transition: all .2s;
+      border: 2px solid transparent;
+    }
+    .cat-card:hover { border-color: var(--green); background: var(--light); transform: translateY(-3px); }
+    .cat-icon { font-size: 2rem; margin-bottom: 10px; }
+    .cat-name { font-size: .85rem; font-weight: 600; color: var(--text); }
+
+    /* ── HOW IT WORKS ── */
+    .how-bg { background: var(--light); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+    .step {
+      background: white; border-radius: 16px; padding: 28px 22px;
+      text-align: center; position: relative;
+      box-shadow: var(--shadow); border: 1px solid var(--border);
+    }
+    .step-num {
+      width: 40px; height: 40px; background: var(--green); color: white;
+      border-radius: 50%; display: grid; place-items: center;
+      font-weight: 700; font-size: 1rem; margin: 0 auto 16px;
+    }
+    .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .step p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── ORDER FORM ── */
+    .order-bg { background: white; }
+    .order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    @media(max-width: 700px){ .order-grid { grid-template-columns: 1fr; } }
+
+    .form-card {
+      background: var(--grey); border-radius: 18px; padding: 32px;
+      border: 1px solid var(--border);
+    }
+    .form-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 24px; color: var(--green); }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: .88rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+      border-radius: 9px; font-size: .93rem; background: white;
+      font-family: 'DM Sans', sans-serif; color: var(--text);
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--green);
+    }
+    .form-group textarea { min-height: 90px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .upload-label {
+      display: flex; align-items: center; gap: 10px; padding: 11px 14px;
+      border: 1.5px dashed var(--green); border-radius: 9px;
+      cursor: pointer; color: var(--green); font-size: .9rem; font-weight: 500;
+      background: var(--light); transition: background .2s;
+    }
+    .upload-label:hover { background: #d0f0e2; }
+    #prescFile { display: none; }
+
+    /* Medicine items */
+    .med-list { margin-bottom: 14px; }
+    .med-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px;
+      background: white; border-radius: 9px; border: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .med-item input[type="text"] { flex: 1; border: none; background: transparent; padding: 0; font-size: .9rem; outline: none; }
+    .med-item input[type="number"] { width: 60px; border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; text-align: center; }
+    .med-item button { background: none; border: none; cursor: pointer; color: var(--red); font-size: 1.1rem; }
+    .add-med {
+      background: none; border: 1.5px dashed var(--green); color: var(--green);
+      padding: 8px 16px; border-radius: 8px; font-size: .88rem; font-weight: 600;
+      cursor: pointer; width: 100%; transition: background .2s;
+    }
+    .add-med:hover { background: var(--light); }
+
+    .submit-btn {
+      width: 100%; background: var(--green); color: white; border: none;
+      padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; margin-top: 10px; letter-spacing: .02em;
+      transition: background .2s, transform .15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .submit-btn:hover { background: var(--green2); transform: translateY(-1px); }
+
+    /* info panel */
+    .info-panel h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 18px; color: var(--green); }
+    .info-list { list-style: none; }
+    .info-list li {
+      display: flex; gap: 12px; margin-bottom: 18px;
+      font-size: .9rem; line-height: 1.6;
+    }
+    .info-list .ico {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--light); border-radius: 10px;
+      display: grid; place-items: center; font-size: 1.1rem;
+    }
+    .info-list strong { display: block; font-weight: 600; color: var(--text); }
+    .info-list span { color: var(--muted); }
+
+    /* contact strip */
+    .contact-strip {
+      background: var(--green); color: white;
+      padding: 28px 24px; text-align: center;
+    }
+    .contact-strip p { font-size: 1rem; opacity: .9; margin-bottom: 10px; }
+    .contact-strip a { color: white; font-size: 1.3rem; font-weight: 700; text-decoration: none; display: block; margin-bottom: 4px; }
+    .contact-strip a:hover { text-decoration: underline; }
+
+    /* ── SUCCESS MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45);
+      z-index: 200; align-items: center; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: white; border-radius: 18px; padding: 40px 32px;
+      max-width: 420px; width: 90%; text-align: center;
+      animation: popIn .3s ease;
+    }
+    @keyframes popIn { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal .check { font-size: 3rem; margin-bottom: 14px; }
+    .modal h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--green); margin-bottom: 10px; }
+    .modal p { color: var(--muted); font-size: .95rem; line-height: 1.6; margin-bottom: 24px; }
+    .modal .order-id { background: var(--light); border-radius: 8px; padding: 10px 18px; display: inline-block; font-weight: 700; color: var(--green); font-size: 1rem; margin-bottom: 20px; }
+    .modal-close { background: var(--green); color: white; border: none; padding: 11px 28px; border-radius: 9px; font-size: .95rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text); color: rgba(255,255,255,.7);
+      padding: 36px 24px; text-align: center; font-size: .85rem;
+    }
+    footer strong { color: white; }
+    footer p { margin-top: 6px; }
+
+    /* ── RESPONSIVE NAV ── */
+    @media(max-width: 680px){
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.5 11h-3.5v3.5a1 1 0 0 1-2 0V13H7.5a1 1 0 0 1 0-2H11V7.5a1 1 0 0 1 2 0V11h3.5a1 1 0 0 1 0 2Z"/></svg>
+      </div>
+      <div>
+        <div class="logo-text">Amaan Medical</div>
+        <div class="logo-sub">General Store</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#categories">Medicines</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#order">Order Now</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order Medicine</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✦ Trusted Local Pharmacy</div>
+  <h1>Your Medicines,<br><span>Delivered Fast</span></h1>
+  <p>Order genuine medicines from Amaan Medical General Store — quick delivery, real pharmacist support, and genuine products every time.</p>
+  <div class="hero-btns">
+    <a href="#order" class="btn-primary">🛒 Place an Order</a>
+    <a href="#how" class="btn-outline">How It Works</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.25 3.75 10.15 9 11.35C17.25 21.15 21 16.25 21 11V5L12 1zm-1 14l-4-4 1.41-1.41L11 12.17l6.59-6.59L19 7l-8 8z"/></svg>
+      100% Genuine Medicines
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      Same-Day Delivery Available
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+      WhatsApp Order Support
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M17 1H7C5.9 1 5 1.9 5 3v18l7-3 7 3V3c0-1.1-.9-2-2-2z"/></svg>
+      Prescription Accepted
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="categories" id="categories">
+  <div class="section">
+    <div class="section-title">Browse Categories</div>
+    <div class="section-sub">Select a category to add to your order</div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="addCategory('Fever & Cold')">
+        <div class="cat-icon">🤒</div>
+        <div class="cat-name">Fever & Cold</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Antibiotics')">
+        <div class="cat-icon">💊</div>
+        <div class="cat-name">Antibiotics</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Pain Relief')">
+        <div class="cat-icon">🩹</div>
+        <div class="cat-name">Pain Relief</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Vitamins & Supplements')">
+        <div class="cat-icon">🌿</div>
+        <div class="cat-name">Vitamins</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Diabetes Care')">
+        <div class="cat-icon">🩸</div>
+        <div class="cat-name">Diabetes Care</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Heart & BP')">
+        <div class="cat-icon">❤️</div>
+        <div class="cat-name">Heart & BP</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Skin Care')">
+        <div class="cat-icon">🧴</div>
+        <div class="cat-name">Skin Care</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Baby & Child Care')">
+        <div class="cat-icon">👶</div>
+        <div class="cat-name">Baby Care</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Eye & Ear Drops')">
+        <div class="cat-icon">👁️</div>
+        <div class="cat-name">Eye & Ear Drops</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Surgical & Dressing')">
+        <div class="cat-icon">🩺</div>
+        <div class="cat-name">Surgical Items</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Digestive & Stomach')">
+        <div class="cat-icon">💙</div>
+        <div class="cat-name">Digestive</div>
+      </div>
+      <div class="cat-card" onclick="addCategory('Other')">
+        <div class="cat-icon">➕</div>
+        <div class="cat-name">Other</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-bg" id="how">
+  <div class="section">
+    <div class="section-title">How It Works</div>
+    <div class="section-sub">Order in 3 simple steps — we'll do the rest</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Fill Your Order</h3>
+        <p>Type the names of your medicines, quantities, and your address in the form. You can also upload a prescription photo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Confirm</h3>
+        <p>Our pharmacist reviews your order and calls or WhatsApps you within 15–30 minutes to confirm availability and price.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Delivery / Pickup</h3>
+        <p>We deliver to your door or you can pick up from our store. Pay on delivery — no advance payment needed.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Stay Healthy ✦</h3>
+        <p>Genuine medicines, caring service. Contact us anytime for refills or questions from your local trusted pharmacist.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER FORM -->
+<div class="order-bg" id="order">
+  <div class="section">
+    <div class="section-title">Place Your Order</div>
+    <div class="section-sub">Fill in the details below — we'll confirm within 30 minutes</div>
+    <div class="order-grid">
+
+      <!-- FORM -->
+      <div class="form-card">
+        <h3>🛒 New Medicine Order</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Full Name *</label>
+            <input type="text" id="custName" placeholder="e.g. Ahmed Khan" required />
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="custPhone" placeholder="03XX-XXXXXXX" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Delivery Address *</label>
+          <input type="text" id="custAddr" placeholder="House no, Street, Area, City" required />
+        </div>
+
+        <div class="form-group">
+          <label>Delivery Time Preference</label>
+          <select id="delivTime">
+            <option>As soon as possible</option>
+            <option>Morning (9am – 12pm)</option>
+            <option>Afternoon (12pm – 4pm)</option>
+            <option>Evening (4pm – 8pm)</option>
+            <option>I'll pick up from store</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Medicines Required *</label>
+          <div class="med-list" id="medList">
+            <div class="med-item">
+              <input type="text" placeholder="Medicine name (e.g. Panadol, Augmentin)" />
+              <input type="number" value="1" min="1" placeholder="Qty" title="Quantity"/>
+              <button onclick="removeMed(this)" title="Remove">✕</button>
+            </div>
+          </div>
+          <button class="add-med" onclick="addMed()">+ Add Another Medicine</button>
+        </div>
+
+        <div class="form-group">
+          <label>Special Instructions</label>
+          <textarea id="custNote" placeholder="e.g. specific brand required, urgent delivery, call before coming..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Upload Prescription (optional)</label>
+          <label class="upload-label" for="prescFile">
+            📄 Tap to attach prescription photo / PDF
+          </label>
+          <input type="file" id="prescFile" accept="image/*,.pdf" onchange="showFileName(this)" />
+          <div id="fileName" style="font-size:.8rem;color:var(--green);margin-top:6px;"></div>
+        </div>
+
+        <button class="submit-btn" onclick="submitOrder()">✦ Submit Order Now</button>
+      </div>
+
+      <!-- INFO PANEL -->
+      <div class="info-panel">
+        <h3>Why Order From Us?</h3>
+        <ul class="info-list">
+          <li>
+            <div class="ico">✅</div>
+            <div>
+              <strong>Genuine & Licensed Medicines</strong>
+              <span>All medicines are sourced from certified distributors. No fake or expired products.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico">🚚</div>
+            <div>
+              <strong>Fast Local Delivery</strong>
+              <span>Same-day delivery available in our area. We deliver to your doorstep.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico">💬</div>
+            <div>
+              <strong>Pharmacist Consultation</strong>
+              <span>Have a question about your medicine? Our pharmacist is always available to help.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico">💵</div>
+            <div>
+              <strong>Pay on Delivery</strong>
+              <span>No advance payment required. Pay when you receive your order. Simple & safe.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico">📋</div>
+            <div>
+              <strong>Prescription Handled</strong>
+              <span>Upload your prescription and we'll take care of the rest for controlled medicines.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div style="background:var(--light);border-radius:14px;padding:20px;margin-top:8px;border:1px solid var(--border);">
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:10px;color:var(--green);">📍 Store Location</div>
+          <div style="font-size:.88rem;color:var(--muted);line-height:1.7;">
+            Amaan Medical General Store<br/>
+            Bhagyoday Nagar, Near 5 Star Bakery,<br/>
+            Kondhwa, Pune – 411048<br/>
+            Open: 8:00 AM – 10:00 PM (Daily)<br/>
+            <br/>
+            <strong style="color:var(--text);">📞 Call / WhatsApp:</strong><br/>
+            <a href="tel:+919595676755" style="color:var(--green);font-weight:700;font-size:1rem;">+91 95956 76755</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip" id="contact">
+  <p>Need help or want to order via WhatsApp?</p>
+  <a href="tel:+919595676755">📞 +91 95956 76755</a>
+  <a href="https://wa.me/919595676755" target="_blank">💬 Chat on WhatsApp</a>
+  <p style="margin-top:12px;font-size:.85rem;opacity:.7;">We respond within 15–30 minutes during store hours</p>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="check">✅</div>
+    <h2>Order Received!</h2>
+    <div class="order-id" id="orderId">#AMG-0000</div>
+    <p>Thank you! Your order has been noted. Our pharmacist will call or WhatsApp you within <strong>15–30 minutes</strong> to confirm your medicines and delivery time.</p>
+    <button class="modal-close" onclick="closeModal()">Done</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Amaan Medical General Store</strong>
+  <p>© 2025 Amaan Medical. All rights reserved. | Genuine Medicines · Trusted Service · Fast Delivery</p>
+</footer>
+
+<script>
+  // Add medicine row
+  function addMed() {
+    const list = document.getElementById('medList');
+    const row = document.createElement('div');
+    row.className = 'med-item';
+    row.innerHTML = `
+      <input type="text" placeholder="Medicine name" />
+      <input type="number" value="1" min="1" placeholder="Qty" title="Quantity" />
+      <button onclick="removeMed(this)" title="Remove">✕</button>
+    `;
+    list.appendChild(row);
+    row.querySelector('input').focus();
+  }
+
+  // Add from category click
+  function addCategory(cat) {
+    const list = document.getElementById('medList');
+    const row = document.createElement('div');
+    row.className = 'med-item';
+    row.innerHTML = `
+      <input type="text" placeholder="Medicine name" value="${cat} - " />
+      <input type="number" value="1" min="1" placeholder="Qty" title="Quantity" />
+      <button onclick="removeMed(this)" title="Remove">✕</button>
+    `;
+    list.appendChild(row);
+    document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => row.querySelector('input').focus(), 500);
+  }
+
+  function removeMed(btn) {
+    const list = document.getElementById('medList');
+    if (list.children.length > 1) btn.closest('.med-item').remove();
+  }
+
+  function showFileName(input) {
+    const el = document.getElementById('fileName');
+    el.textContent = input.files[0] ? '📎 ' + input.files[0].name : '';
+  }
+
+  function generateOrderId() {
+    return '#AMG-' + Math.floor(1000 + Math.random() * 9000);
+  }
+
+  function submitOrder() {
+    const name  = document.getElementById('custName').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const addr  = document.getElementById('custAddr').value.trim();
+    const meds  = [...document.querySelectorAll('#medList .med-item input[type="text"]')]
+                    .map(i => i.value.trim()).filter(Boolean);
+
+    if (!name)  { alert('Please enter your name.'); document.getElementById('custName').focus(); return; }
+    if (!phone) { alert('Please enter your phone number.'); document.getElementById('custPhone').focus(); return; }
+    if (!addr)  { alert('Please enter your delivery address.'); document.getElementById('custAddr').focus(); return; }
+    if (!meds.length) { alert('Please add at least one medicine.'); return; }
+
+    document.getElementById('orderId').textContent = generateOrderId();
+    document.getElementById('modal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    // Reset form
+    document.getElementById('custName').value = '';
+    document.getElementById('custPhone').value = '';
+    document.getElementById('custAddr').value = '';
+    document.getElementById('custNote').value = '';
+    document.getElementById('fileName').textContent = '';
+    const list = document.getElementById('medList');
+    list.innerHTML = `<div class="med-item">
+      <input type="text" placeholder="Medicine name (e.g. Panadol, Augmentin)" />
+      <input type="number" value="1" min="1" placeholder="Qty" title="Quantity"/>
+      <button onclick="removeMed(this)" title="Remove">✕</button>
+    </div>`;
+  }
+</script>
+</body>
+</html>
